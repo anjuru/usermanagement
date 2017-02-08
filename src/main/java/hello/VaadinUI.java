@@ -40,7 +40,7 @@ public class VaadinUI extends UI {
 		this.editor = editor;
 		this.grid = new Grid();
 		this.filter = new TextField();
-		this.addNewBtn = new Button("New customer", FontAwesome.PLUS);
+		this.addNewBtn = new Button("Add New customer", FontAwesome.PLUS);
 		this.title = new Label("<b><h2>Users Management</h2></b>", ContentMode.HTML);
 	}
 
