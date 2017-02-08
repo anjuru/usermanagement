@@ -7,6 +7,8 @@ import com.vaadin.annotations.Theme;
 import com.vaadin.data.util.BeanItemContainer;
 import com.vaadin.server.FontAwesome;
 import com.vaadin.server.VaadinRequest;
+import com.vaadin.shared.ui.MarginInfo;
+import com.vaadin.shared.ui.label.ContentMode;
 import com.vaadin.spring.annotation.SpringUI;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Grid;
@@ -14,6 +16,7 @@ import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.TextField;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
+import com.vaadin.ui.Label;
 
 @SpringUI
 @Theme("valo")
@@ -26,9 +29,11 @@ public class VaadinUI extends UI {
 	final Grid grid;
 
 	final TextField filter;
+	
+	final Label title;
 
 	private final Button addNewBtn;
-
+	
 	@Autowired
 	public VaadinUI(CustomerRepository repo, CustomerEditor editor) {
 		this.repo = repo;
@@ -36,21 +41,23 @@ public class VaadinUI extends UI {
 		this.grid = new Grid();
 		this.filter = new TextField();
 		this.addNewBtn = new Button("New customer", FontAwesome.PLUS);
+		this.title = new Label("<b><h2>Manage Users</h2></b>", ContentMode.HTML);
 	}
 
 	@Override
 	protected void init(VaadinRequest request) {
 		// build layout
+		HorizontalLayout titleLayout = new HorizontalLayout(title);
 		HorizontalLayout actions = new HorizontalLayout(filter, addNewBtn);
-		VerticalLayout mainLayout = new VerticalLayout(actions, grid, editor);
+		VerticalLayout mainLayout = new VerticalLayout(titleLayout, actions, grid, editor);
 		setContent(mainLayout);
 
 		// Configure layouts and components
 		actions.setSpacing(true);
 		mainLayout.setMargin(true);
 		mainLayout.setSpacing(true);
-
-		grid.setHeight(300, Unit.PIXELS);
+		
+		grid.setHeight(400, Unit.PIXELS);
 		grid.setColumns("id", "firstName", "lastName");
 
 		filter.setInputPrompt("Filter by last name");
