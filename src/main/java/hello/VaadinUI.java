@@ -17,7 +17,7 @@ import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.Label;
 
-@SpringUI
+@SpringUI 
 @Theme("valo")
 public class VaadinUI extends UI {
 
