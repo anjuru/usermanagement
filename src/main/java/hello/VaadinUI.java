@@ -31,6 +31,7 @@ public class VaadinUI extends UI {
 	
 	final Label title;
 
+		
 	private final Button addNewBtn;
 	
 	@Autowired
@@ -40,7 +41,7 @@ public class VaadinUI extends UI {
 		this.grid = new Grid();
 		this.filter = new TextField();
 		this.addNewBtn = new Button("New customer", FontAwesome.PLUS);
-		this.title = new Label("<b><h2>User Management</h2></b>", ContentMode.HTML);
+		this.title = new Label("<b><h2>Users Management</h2></b>", ContentMode.HTML);
 	}
 
 	@Override
