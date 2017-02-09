@@ -14,11 +14,11 @@ import static org.assertj.core.api.BDDAssertions.then;
 public class ApplicationTests {
 
     @Autowired
-    private CustomerRepository repository;
+    private CustomerRepository repository; 
 
     @Test
     public void shouldFillOutComponentsWithDataWhenTheApplicationIsStarted() {
-        then(this.repository.count()).isEqualTo(6);
+        then(this.repository.count()).isEqualTo(5);
     }
 
     @Test
