@@ -6,6 +6,7 @@ buildscript {
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:1.5.1.RELEASE")
         classpath "net.saliman:gradle-cobertura-plugin:2.4.0"
+        classpath "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:2.2.1"
     }
 }
 
@@ -15,6 +16,19 @@ apply plugin: 'idea'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'net.saliman.cobertura'
 apply plugin: 'war'
+apply plugin: 'maven-publish'
+apply plugin: 'org.sonarqube'
+
+sonarqube {
+  properties {
+    property "sonar.projectName", "Employee Management"
+    property "sonar.projectKey", "emp:mgmt"
+    property "sonar.projectVersion", "1.0"
+    property "sonar.sources", "src/main"
+    property "sonar.tests", "src/test"
+  }
+}
+
 
 war {
     baseName = 'usermanagment'
@@ -24,6 +38,42 @@ jar {
     baseName = 'gs-crud-with-vaadin'
     version =  '0.1.0'
 }
+
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+dependencies {
+    compile("org.springframework.boot:spring-boot-starter-web")
+    providedRuntime("org.springframework.boot:spring-boot-starter-tomcat")
+    compile("org.springframework.boot:spring-boot-starter-actuator")
+    testCompile("org.springframework.boot:spring-boot-starter-test")
+    }
+    
+
+group = 'user'
+version = '1.0'
+
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            artifactId 'usermanagement'
+            from components.web
+        }
+    }
+    repositories {
+        maven {
+            credentials {
+              username 'admin'
+              password 'admin123'
+            }
+            url "http://localhost:8081/artifactory/generic-local"
+        }
+    }
+}
+
+
 
 repositories {
     mavenCentral()
