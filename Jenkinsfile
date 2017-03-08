@@ -12,17 +12,18 @@ pipeline {
       }
     }
     
+    stage('Unit Test') {
+      steps {
+        sh './gradlew test'
+      }
+    }
+    
     stage('Run Sonar Qube') {
       steps {
         sh './gradlew sonarqube -Dsonar.host.url=http://localhost:9000/sonar'
       }
     }
     
-    stage('Unit Test') {
-      steps {
-        sh './gradlew test'
-      }
-    }
     stage('Build Artifacts') {
       steps {
         sh './gradlew clean build'
