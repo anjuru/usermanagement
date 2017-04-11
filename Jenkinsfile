@@ -6,7 +6,7 @@ pipeline {
         echo 'Initiate Build'
       }
     }
-    stage('Source Code Checkout') {
+    stage('Source Checkout') {
       steps {
         git(url: 'https://github.com/anjuru/usermanagement.git', branch: 'master', changelog: true, poll: true)
       }
