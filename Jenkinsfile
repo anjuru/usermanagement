@@ -1,12 +1,7 @@
 pipeline {
   agent any
   stages {
-    stage('Initiate Build') {
-      steps {
-        echo 'Initiate Build'
-      }
-    }
-    stage('SourcecCode Checkout') {
+    stage('Source Code Checkout') {
       steps {
         git(url: 'https://github.com/anjuru/usermanagement.git', branch: 'master', changelog: true, poll: true)
       }
